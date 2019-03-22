@@ -5,10 +5,10 @@ class Card extends Component {
     render() {
         return (
             <div className="card">
-                {this.props.content}
+                { this.props.content }
             </div>
         );
     }
 }
 
-export {Card}
+export { Card }
