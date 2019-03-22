@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="container">
         {this.renderBoard()}
-        {this.renderBoard()}
+        {/*{this.renderBoard()}*/}
       </div>
     );
   }

@@ -1,8 +1,8 @@
 .board {
-    background: aqua;
+    background: lemonchiffon;
     border: 1px solid black;
-    margin: 1%;
+    margin: 2%;
     padding: 10px;
-    width: 48%;
+    width: 46%;
     height: 100%;
 }
