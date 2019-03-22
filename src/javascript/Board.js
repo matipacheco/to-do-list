@@ -6,8 +6,8 @@ class Board extends Component {
     render() {
         return(
             <div className="board">
-                <Card/>
-                <Card/>
+                <Card content={'Hola'}/>
+                <Card content={'mundo'}/>
             </div>
         );
     }
