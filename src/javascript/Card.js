@@ -1,16 +1,28 @@
 import '../css/Card.css';
-import React, { Component } from 'react';
+import React from 'react';
 
-import { Content } from "./Content";
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from "../utils/Constants";
 
-class Card extends Component {
-    render() {
-        return (
-            <div className="card">
-                <Content content={ this.props.content }/>
-            </div>
-        )
+const cardSource = {
+    beginDrag(props) {
+        return {content: props.content}
+    }
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging(),
     }
 }
 
-export { Card }
+function Card({ connectDragSource, isDragging, content }){
+    return connectDragSource(
+        <div className="card" style={{opacity: isDragging ? 0.5 : 1, fontSize: 25, cursor: 'move'}}>
+            { content }
+        </div>,
+    )
+}
+
+export default DragSource(ItemTypes.CARD, cardSource, collect)(Card);
