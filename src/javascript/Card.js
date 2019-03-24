@@ -6,7 +6,7 @@ import { ItemTypes } from "../utils/Constants";
 
 const cardSource = {
     beginDrag(props) {
-        return {content: props.content}
+        return { task_description: props.task_description }
     }
 };
 
@@ -17,10 +17,10 @@ function collect(connect, monitor) {
     }
 }
 
-function Card({ connectDragSource, isDragging, content }){
+function Card({ connectDragSource, isDragging, task_description }){
     return connectDragSource(
         <div className="card" style={{opacity: isDragging ? 0.5 : 1, fontSize: 25, cursor: 'move'}}>
-            { content }
+            { task_description }
         </div>,
     )
 }
