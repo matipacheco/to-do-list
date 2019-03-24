@@ -1,11 +1,12 @@
-import React    from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import './css/index.css';
+import App from './javascript/App';
+import * as serviceWorker from './serviceWorker';
 
-import Card from './Card';
-import AddCardButton from "./buttons/AddCardButton";
+ReactDOM.render(<App />, document.getElementById('root'));
 
-import registerServiceWorker from './registerServiceWorker';
-
-ReactDOM.render(<Card />, document.getElementById('task-list'));
-ReactDOM.render(<AddCardButton />, document.getElementById('add-card-button'));
-registerServiceWorker();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
