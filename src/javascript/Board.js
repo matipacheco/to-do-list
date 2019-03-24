@@ -1,9 +1,9 @@
-import "../css/Board.css";
-import Card from "./Card";
-import React, { Component } from "react";
+import '../css/Board.css';
+import Card from './Card';
+import React, { Component } from 'react';
 
-// import axios from "axios";
-// import { GetAllTasksUrl } from "../utils/Constants";
+// import axios from 'axios';
+// import { GetAllTasksUrl } from '../utils/Constants';
 
 function getItems() {
     // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
@@ -17,7 +17,7 @@ function getItems() {
     //     .then(response => console.log(response.json()))
     //     .catch(error => console.log(error));
 
-    // axios.get(GetAllTasksUrl, { headers: { "Access-Control-Allow-Origin": "*" } })
+    // axios.get(GetAllTasksUrl, { headers: { ''Access-Control-Allow-Origin': '*' } })
     //     .then(data => console.log(data))
     //     .catch(err => console.log(err));
 
@@ -33,7 +33,7 @@ class Board extends Component {
             return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
         });
         return(
-            <div className="board">
+            <div className='board_section'>
                 { cards }
             </div>
         );
