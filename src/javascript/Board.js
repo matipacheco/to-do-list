@@ -27,8 +27,9 @@ function getItems() {
 
 class Board extends Component {
     render() {
-        let items = getItems().payload;
-        let cards = items.map(function(item) {
+        let payload = getItems().payload;
+        let items   = payload ? payload : [];
+        let cards   = items.map(function(item) {
             return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
         });
         return(
