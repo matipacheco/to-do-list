@@ -9,17 +9,17 @@ import { DragDropContextProvider } from 'react-dnd'
 class App extends Component {
   renderBoard() {
     return (
-        <DragDropContextProvider backend={ HTML5Backend }>
-          <Board/>
-        </DragDropContextProvider>
+        <Board/>
     )
   }
 
   render() {
     return (
       <div className="container">
-        { this.renderBoard() }
-        { /*{this.renderBoard()}*/ }
+        <DragDropContextProvider backend={ HTML5Backend }>
+          { this.renderBoard() }
+          {/*{ this.renderBoard() }*/}
+        </DragDropContextProvider>
       </div>
     );
   }
