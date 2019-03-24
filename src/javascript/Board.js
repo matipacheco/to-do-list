@@ -1,12 +1,12 @@
-import '../css/Board.css';
-import Card from './Card'
-import React, { Component } from 'react';
+import "../css/Board.css";
+import Card from "./Card";
+import React, { Component } from "react";
 
-import axios from 'axios';
-import {GetAllTasksUrl} from "../utils/Constants";
+import axios from "axios";
+import { GetAllTasksUrl } from "../utils/Constants";
 
 function getItems() {
-    axios.get(GetAllTasksUrl)
+    axios.get(GetAllTasksUrl, { headers: { "Access-Control-Allow-Origin": "*" } })
         .then(data => console.log(data))
         .catch(err => console.log(err));
 }
