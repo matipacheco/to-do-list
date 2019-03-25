@@ -6,6 +6,13 @@ import React, { Component } from 'react';
 // import { GetAllTasksUrl } from '../utils/Constants';
 
 class Board extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: this.getItems()
+        }
+    }
+
     getItems() {
         // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
         // let config  = {
@@ -23,13 +30,13 @@ class Board extends Component {
         //     .catch(err => console.log(err));
 
         // Since CORS are fucking everything up.... This a temporary solution
-        return require('../utils/mocks/get_all_tasks_mock');
+        let payload = require('../utils/mocks/get_all_tasks_mock').payload;
+        let items   = payload ? payload : [];
+        return items;
     }
 
     render() {
-        let payload = this.getItems().payload;
-        let items   = payload ? payload : [];
-        let cards   = items.map(function(item) {
+        let cards = this.state.items.map(function(item) {
             return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
         });
         return(
