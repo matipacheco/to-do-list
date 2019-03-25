@@ -14,7 +14,7 @@ class Board extends Component {
 
         this.state = {
             items: items,
-            lastId: items.slice(-1).pop().id
+            lastId: (parseInt(items.slice(-1).pop().id) + 1).toString()
         };
     }
 
