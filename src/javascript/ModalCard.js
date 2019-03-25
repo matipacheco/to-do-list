@@ -1,5 +1,7 @@
 import React from 'react';
 
+// https://alligator.io/react/modal-component/
+
 const ModalCard = ({ handleClose, show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
