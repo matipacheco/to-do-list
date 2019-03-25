@@ -9,22 +9,26 @@ import {NewCardButton} from './NewCardButton'
 class Board extends Component {
     constructor(props) {
         super(props);
+        let items = this.getItems();
+
         this.state = {
-            items: this.getItems()
+            items: items,
+            last_id: items.pop().id
         };
     }
 
     emptyCard() {
         return {
-            "id": null,
-            "task_name": null,
+            "id": parseInt(this.state.last_id) + 1,
+            "task_name": "&nbsp;",
             "task_description": "&nbsp;"
         }
-    }
+    };
 
     addCard = () => {
         this.setState( state => ({
-            items: this.state.items.concat(this.emptyCard())
+            items: this.state.items.concat(this.emptyCard()),
+            last_id: parseInt(this.state.last_id) + 1
         }))
     };
 
