@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class NewCardButton extends Component {
     handleClick = () => {
-        this.props.holi();
+        this.props.addCard();
     };
 
     render() {

@@ -9,26 +9,27 @@ import {NewCardButton} from './NewCardButton'
 class Board extends Component {
     constructor(props) {
         super(props);
+
         let items = this.getItems();
 
         this.state = {
             items: items,
-            last_id: items.pop().id
+            lastId: items.slice(-1).pop().id
         };
     }
 
     emptyCard() {
         return {
-            "id": parseInt(this.state.last_id) + 1,
+            "id": this.state.lastId,
             "task_name": "&nbsp;",
             "task_description": "&nbsp;"
         }
-    };
+    }
 
     addCard = () => {
         this.setState( state => ({
-            items: this.state.items.concat(this.emptyCard()),
-            last_id: parseInt(this.state.last_id) + 1
+            lastId: (parseInt(state.lastId) + 1).toString(),
+            items: state.items.concat(this.emptyCard())
         }))
     };
 
@@ -37,7 +38,6 @@ class Board extends Component {
         let payload = require('../utils/mocks/get_all_tasks_mock').payload;
         let items   = payload ? payload : [];
         return items;
-
 
         // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
         // let config  = {
@@ -66,9 +66,8 @@ class Board extends Component {
     render() {
         return(
             <div className='board_section'>
+                <NewCardButton addCard={this.addCard} />
                 { this.renderItems() }
-
-                <NewCardButton holi={this.addCard} />
             </div>
         );
     }
