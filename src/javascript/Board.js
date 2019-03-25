@@ -1,7 +1,8 @@
 import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
-import {NewCardButton} from './NewCardButton'
+import { NewCardButton } from './NewCardButton';
+import { ModalCard } from "./ModalCard";
 
 // import axios from 'axios';
 // import { GetAllTasksUrl } from '../utils/Constants';
@@ -13,10 +14,19 @@ class Board extends Component {
         let items = this.getItems();
 
         this.state = {
+            show: false,
             items: items,
             lastId: (parseInt(items.slice(-1).pop().id) + 1).toString()
         };
     }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
 
     emptyCard() {
         return {
@@ -66,7 +76,15 @@ class Board extends Component {
     render() {
         return(
             <div className='board_section'>
-                <NewCardButton addCard={this.addCard} />
+                <ModalCard show={ this.state.show } handleClose={ this.hideModal }>
+                    <p>Modal</p>
+                    <p>Data</p>
+                </ModalCard>
+                <button type="button" onClick={ this.showModal }>
+                    open
+                </button>
+
+                <NewCardButton addCard={ this.addCard } />
                 { this.renderItems() }
             </div>
         );
