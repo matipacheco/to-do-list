@@ -1,6 +1,7 @@
 import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
+import {NewCardButton} from './NewCardButton'
 
 // import axios from 'axios';
 // import { GetAllTasksUrl } from '../utils/Constants';
@@ -10,10 +11,30 @@ class Board extends Component {
         super(props);
         this.state = {
             items: this.getItems()
+        };
+    }
+
+    emptyCard() {
+        return {
+            "id": null,
+            "task_name": null,
+            "task_description": "&nbsp;"
         }
     }
 
+    addCard = () => {
+        this.setState( state => ({
+            items: this.state.items.concat(this.emptyCard())
+        }))
+    };
+
     getItems() {
+        // Since CORS are fucking everything up.... This a temporary solution
+        let payload = require('../utils/mocks/get_all_tasks_mock').payload;
+        let items   = payload ? payload : [];
+        return items;
+
+
         // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
         // let config  = {
         //     method: "GET",
@@ -28,20 +49,22 @@ class Board extends Component {
         // axios.get(GetAllTasksUrl, { headers: { ''Access-Control-Allow-Origin': '*' } })
         //     .then(data => console.log(data))
         //     .catch(err => console.log(err));
-
-        // Since CORS are fucking everything up.... This a temporary solution
-        let payload = require('../utils/mocks/get_all_tasks_mock').payload;
-        let items   = payload ? payload : [];
-        return items;
     }
 
-    render() {
+    renderItems = () => {
         let cards = this.state.items.map(function(item) {
             return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
         });
+
+        return cards;
+    };
+
+    render() {
         return(
             <div className='board_section'>
-                { cards }
+                { this.renderItems() }
+
+                <NewCardButton holi={this.addCard} />
             </div>
         );
     }
