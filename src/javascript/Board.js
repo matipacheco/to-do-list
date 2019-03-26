@@ -16,18 +16,19 @@ class Board extends Component {
         };
     }
 
-    emptyCard() {
+    createCard(task_name, task_description) {
+        debugger;
         return {
             "id": this.state.lastId,
-            "task_name": "&nbsp;",
-            "task_description": "&nbsp;"
+            "task_name": (task_name ? task_name : "&nbsp;"),
+            "task_description": (task_description ? task_description : "&nbsp;")
         }
     }
 
-    addCard = () => {
+    addCard = (task_name = null, task_description = null) => {
         this.setState( state => ({
             lastId: (parseInt(state.lastId) + 1).toString(),
-            items: state.items.concat(this.emptyCard())
+            items: state.items.concat(this.createCard(task_name, task_description))
         }))
     };
 
