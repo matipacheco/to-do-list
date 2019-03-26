@@ -8,12 +8,21 @@ class Board extends Component {
   constructor(props) {
     super(props);
 
-    let items = this.getItems();
-
     this.state = {
-      items: items,
-      lastId: (parseInt(items.slice(-1).pop().id) + 1).toString()
+      items: [],
+      lastId: null
     };
+
+    // To update the empty state we set above
+    // If it renders before the Promise is resolved, it will render an empty
+    // to-do list until the Promise is resolved and the state is updated.
+    // getItemsFromAPI()
+    getMockedItems()
+        .then(response =>
+            this.setState({
+              items: response.data,
+              lastId: (parseInt(response.data.slice(-1).pop().id) + 1).toString()
+        })).catch();
   }
 
   createCard(taskName, taskDescription) {
@@ -34,17 +43,10 @@ class Board extends Component {
     saveItems(this.state, taskName, taskDescription);
   };
 
-  getItems() {
-    // return getItemsFromAPI();
-    return getMockedItems();
-  }
-
   renderItems = () => {
-    let cards = this.state.items.map(function(item) {
+    return this.state.items.map(function(item) {
       return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
     });
-
-    return cards;
   };
 
   render() {

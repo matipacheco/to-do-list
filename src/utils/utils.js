@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetAllTasksUrl } from './Constants';
+import { GetAllTasksUrl, GetAllTasksJsonServerUrl } from './Constants';
 
 function getItemsFromAPI() {
   // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
@@ -26,14 +26,20 @@ function saveItemsToAPI(items) {
 /////////////////////////////////////////////////////////////////////////
 
 function getMockedItems() {
-  let payload = require('./mocks/get_all_tasks_mock').payload;
-  return (payload ? payload : []);
+  // json-server -p 3001  --watch src/utils/mocks/get_all_tasks_mock.json
+  //let something = null;
+
+  return axios(GetAllTasksJsonServerUrl);
+      //  .then(function(response){
+      //    return response.data;
+      //  })
+      // .catch(function(){
+      //    return [];
+      //  })
 }
 
 function saveItems(state, taskName, taskDescription) {
-  let fs = require('browserify-fs');
-
-  let fileContent = {
+  return {
     "code": 200,
     "message": "OK",
     "payload": state.items.concat({
@@ -42,10 +48,6 @@ function saveItems(state, taskName, taskDescription) {
       "task_name": taskDescription
     })
   };
-  
-  fs.writeFile('./mocks/get_all_tasks_mock.json', JSON.stringify(fileContent), 'utf8', function(error){
-    if(error) throw error;
-  })
 }
 
 export { getItemsFromAPI, saveItemsToAPI, getMockedItems, saveItems }
