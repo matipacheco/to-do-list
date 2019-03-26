@@ -2,7 +2,7 @@ import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
 import { NewCardButton } from './NewCardButton';
-import { getMockedItems, saveItems } from "../utils/utils";
+import { getMockedItems, saveItems, getLastId } from "../utils/utils";
 
 class Board extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Board extends Component {
         .then(response =>
             this.setState({
               items: response.data,
-              lastId: (parseInt(response.data.slice(-1).pop().id) + 1).toString()
+              lastId: getLastId(response.data.slice(-1).pop().id)
         })).catch();
   }
 
@@ -35,7 +35,7 @@ class Board extends Component {
 
   addCard = (taskName = null, taskDescription = null) => {
     this.setState( state => ({
-      lastId: (parseInt(state.lastId) + 1).toString(),
+      lastId: getLastId(state.lastId),
       items: state.items.concat(this.createCard(taskName, taskDescription))
     }));
 

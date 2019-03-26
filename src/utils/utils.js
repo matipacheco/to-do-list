@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { GetAllTasksUrl, GetAllTasksJsonServerUrl } from './Constants';
+import { getAllTasksUrl, getAllTasksJsonServerUrl } from './Constants';
+
+function getLastId(id) {
+  return (parseInt(id) + 1).toString()
+}
 
 function getItemsFromAPI() {
   // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
@@ -12,7 +16,7 @@ function getItemsFromAPI() {
   // fetch(GetAllTasksUrl, config)
   //     .then(response => console.log(response.json()))
   //     .catch(error => console.log(error));
-  axios.get(GetAllTasksUrl, {headers: {'Access-Control-Allow-Origin': '*'}})
+  axios.get(getAllTasksUrl, {headers: {'Access-Control-Allow-Origin': '*'}})
       .then(data => console.log(data))
       .catch(err => console.log(err));
 }
@@ -29,7 +33,7 @@ function getMockedItems() {
   // json-server -p 3001  --watch src/utils/mocks/get_all_tasks_mock.json
   //let something = null;
 
-  return axios(GetAllTasksJsonServerUrl);
+  return axios(getAllTasksJsonServerUrl);
       //  .then(function(response){
       //    return response.data;
       //  })
@@ -50,4 +54,4 @@ function saveItems(state, taskName, taskDescription) {
   };
 }
 
-export { getItemsFromAPI, saveItemsToAPI, getMockedItems, saveItems }
+export { getLastId, getItemsFromAPI, saveItemsToAPI, getMockedItems, saveItems }
