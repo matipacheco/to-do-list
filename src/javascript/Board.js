@@ -17,7 +17,6 @@ class Board extends Component {
     }
 
     createCard(task_name, task_description) {
-        debugger;
         return {
             "id": this.state.lastId,
             "task_name": (task_name ? task_name : "&nbsp;"),
