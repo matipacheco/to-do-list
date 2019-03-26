@@ -14,17 +14,15 @@ function getItemsFromAPI() {
   return axios(getTasksUrl);
 }
 
-function saveItemsToAPI(state, taskName, taskDescription) {
+function saveItemsToAPI(id, taskName, taskDescription) {
   debugger;
-  let payload = {
-    "payload": state.items.concat({
-      "id": state.lastId,
-      "task_description": taskName,
-      "task_name": taskDescription
-    })
-  };
-
-  //axios.post(insertTaskUrl, payload)
+  return axios.post(
+      insertTaskUrl,
+      {
+        "id": id,
+        "task_description": taskDescription,
+        "task_name": taskName
+      })
 }
 
 export { getLastId, getItemsFromAPI, saveItemsToAPI }

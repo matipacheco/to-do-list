@@ -14,18 +14,14 @@ class Board extends Component {
     };
 
     // To update the empty state we set above
-    this.updateItems()
-    // If it renders before the Promise is resolved, it will render an empty
-    // to-do list until the Promise is resolved and the state is updated.
-  }
-
-  updateItems() {
     getItemsFromAPI()
         .then(response =>
             this.setState({
               items: response.data,
               lastId: getLastId(response.data.slice(-1).pop().id)
             })).catch();
+    // If it renders before the Promise is resolved, it will render an empty
+    // to-do list until the Promise is resolved and the state is updated.
   }
 
   createCard(taskName, taskDescription) {
@@ -42,8 +38,12 @@ class Board extends Component {
       items: state.items.concat(this.createCard(taskName, taskDescription))
     }));
 
-    saveItemsToAPI(this.state, taskName, taskDescription);
-    this.updateItems();
+    saveItemsToAPI(this.state.lastId, taskName, taskDescription)
+        .then(response =>
+            this.setState({
+              items: response.data,
+              lastId: getLastId(response.data.slice(-1).pop().id)
+            })).catch();
   };
 
   renderItems = () => {
