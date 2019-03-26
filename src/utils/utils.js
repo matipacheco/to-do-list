@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GetAllTasksUrl } from './Constants';
 
-function getItems() {
+function getItemsFromAPI() {
   // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
   // let config  = {
   //     method: "GET",
@@ -24,4 +24,8 @@ function getMockedItems() {
 
 }
 
-export { getItems, getMockedItems }
+function saveItems(items) {
+  debugger;
+}
+
+export { getItemsFromAPI, getMockedItems, saveItems }
