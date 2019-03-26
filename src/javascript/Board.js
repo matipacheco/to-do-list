@@ -2,7 +2,7 @@ import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
 import { NewCardButton } from './NewCardButton';
-import { getMockedItems,  } from "../utils/utils";
+import { getMockedItems, saveItems } from "../utils/utils";
 
 class Board extends Component {
   constructor(props) {
@@ -16,21 +16,22 @@ class Board extends Component {
     };
   }
 
-  createCard(task_name, task_description) {
+  createCard(taskName, taskDescription) {
     return {
       "id": this.state.lastId,
-      "task_name": (task_name ? task_name : "&nbsp;"),
-      "task_description": (task_description ? task_description : "&nbsp;")
+      "task_name": (taskName ? taskName : "&nbsp;"),
+      "task_description": (taskDescription ? taskDescription : "&nbsp;")
     }
   }
 
-  addCard = (task_name = null, task_description = null) => {
+  addCard = (taskName = null, taskDescription = null) => {
     this.setState( state => ({
       lastId: (parseInt(state.lastId) + 1).toString(),
-      items: state.items.concat(this.createCard(task_name, task_description))
+      items: state.items.concat(this.createCard(taskName, taskDescription))
     }));
-    debugger;
 
+    // saveTemsToAPI(items)
+    saveItems(this.state, taskName, taskDescription);
   };
 
   getItems() {

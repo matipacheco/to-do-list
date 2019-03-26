@@ -17,15 +17,35 @@ function getItemsFromAPI() {
       .catch(err => console.log(err));
 }
 
+function saveItemsToAPI(items) {
+  
+}
+
+/////////////////////////////////////////////////////////////////////////
+// Since CORS are fucking everything up.... These are temporary solutions
+/////////////////////////////////////////////////////////////////////////
+
 function getMockedItems() {
-  // Since CORS are fucking everything up.... This a temporary solution
   let payload = require('./mocks/get_all_tasks_mock').payload;
   return (payload ? payload : []);
-
 }
 
-function saveItems(items) {
-  debugger;
+function saveItems(state, taskName, taskDescription) {
+  let fs = require('browserify-fs');
+
+  let fileContent = {
+    "code": 200,
+    "message": "OK",
+    "payload": state.items.concat({
+      "id": state.lastId,
+      "task_description": taskName,
+      "task_name": taskDescription
+    })
+  };
+  
+  fs.writeFile('./mocks/get_all_tasks_mock.json', JSON.stringify(fileContent), 'utf8', function(error){
+    if(error) throw error;
+  })
 }
 
-export { getItemsFromAPI, getMockedItems, saveItems }
+export { getItemsFromAPI, saveItemsToAPI, getMockedItems, saveItems }
