@@ -25,21 +25,13 @@ function saveItemsToAPI(items) {
   
 }
 
-/////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 // Since CORS are fucking everything up.... These are temporary solutions
-/////////////////////////////////////////////////////////////////////////
+// json-server -p 3001  --watch src/utils/mocks/get_all_tasks_mock.json
+//////////////////////////////////////////////////////////////////////////
 
 function getMockedItems() {
-  // json-server -p 3001  --watch src/utils/mocks/get_all_tasks_mock.json
-  //let something = null;
-
   return axios(getAllTasksJsonServerUrl);
-      //  .then(function(response){
-      //    return response.data;
-      //  })
-      // .catch(function(){
-      //    return [];
-      //  })
 }
 
 function saveItems(state, taskName, taskDescription) {
