@@ -1,6 +1,4 @@
 {
-  "code": 200,
-  "message": "OK",
   "payload": [{
     "id": "1",
     "task_description": "teamo",
