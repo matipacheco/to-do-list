@@ -2,7 +2,7 @@ import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
 import { NewCardButton } from './NewCardButton';
-import { getMockedItems, saveItems, getLastId } from "../utils/utils";
+import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils";
 
 class Board extends Component {
   constructor(props) {
@@ -14,15 +14,18 @@ class Board extends Component {
     };
 
     // To update the empty state we set above
+    this.updateItems()
     // If it renders before the Promise is resolved, it will render an empty
     // to-do list until the Promise is resolved and the state is updated.
-    // getItemsFromAPI()
-    getMockedItems()
+  }
+
+  updateItems() {
+    getItemsFromAPI()
         .then(response =>
             this.setState({
               items: response.data,
               lastId: getLastId(response.data.slice(-1).pop().id)
-        })).catch();
+            })).catch();
   }
 
   createCard(taskName, taskDescription) {
@@ -39,8 +42,8 @@ class Board extends Component {
       items: state.items.concat(this.createCard(taskName, taskDescription))
     }));
 
-    // saveTemsToAPI(items)
-    saveItems(this.state, taskName, taskDescription);
+    saveItemsToAPI(this.state, taskName, taskDescription);
+    this.updateItems();
   };
 
   renderItems = () => {
