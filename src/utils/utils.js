@@ -15,7 +15,6 @@ function getItemsFromAPI() {
 }
 
 function saveItemsToAPI(id, taskName, taskDescription) {
-  debugger;
   return axios.post(
       insertTaskUrl,
       {

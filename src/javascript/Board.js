@@ -8,18 +8,16 @@ class Board extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      items: [],
-      lastId: null
-    };
+    this.state = { items: [], lastId: null };
 
     // To update the empty state we set above
     getItemsFromAPI()
         .then(response =>
             this.setState({
-              items: response.data,
-              lastId: getLastId(response.data.slice(-1).pop().id)
-            })).catch();
+                items: response.data,
+                lastId: this.getLastId(response)
+            }))
+        .catch();
     // If it renders before the Promise is resolved, it will render an empty
     // to-do list until the Promise is resolved and the state is updated.
   }
@@ -33,18 +31,23 @@ class Board extends Component {
   }
 
   addCard = (taskName = null, taskDescription = null) => {
-    this.setState( state => ({
-      lastId: getLastId(state.lastId),
-      items: state.items.concat(this.createCard(taskName, taskDescription))
-    }));
+      /*this.setState( state => ({
+        lastId: getLastId(state.lastId),
+        items: state.items.concat(this.createCard(taskName, taskDescription))
+    }));*/
 
     saveItemsToAPI(this.state.lastId, taskName, taskDescription)
         .then(response =>
             this.setState({
-              items: response.data,
-              lastId: getLastId(response.data.slice(-1).pop().id)
-            })).catch();
+              items: this.state.items.concat(response.data),
+              lastId: this.getLastId(response)
+            }))
+        .catch();
   };
+
+  getLastId(response) {
+      return getLastId(response.data.slice(-1).pop().id)
+  }
 
   renderItems = () => {
     return this.state.items.map(function(item) {
