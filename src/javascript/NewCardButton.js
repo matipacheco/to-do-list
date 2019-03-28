@@ -9,8 +9,9 @@ class NewCardButton extends Component {
         this.setState({ taskDescription : event.target.value })
     };
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
         this.props.addCard(this.state.taskName, this.state.taskDescription);
+        event.preventDefault();
     };
 
     render() {
