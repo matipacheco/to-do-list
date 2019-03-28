@@ -23,15 +23,13 @@ class Board extends Component {
   }
 
   addCard = (taskName = null, taskDescription = null) => {
-    let id = getLastId(this.state.lastId);
-
-    this.setState( {
-        lastId: id,
-        items: this.state.items.concat(createTask(id, taskName, taskDescription))
-    });
-
     saveItemsToAPI(this.state.lastId, taskName, taskDescription)
-        .then()
+        .then(response => {
+          this.setState( {
+            lastId: response.data.id,
+            items: this.state.items.concat([response.data])
+          });
+        })
         .catch();
   };
 

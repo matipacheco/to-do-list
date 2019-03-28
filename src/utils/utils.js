@@ -23,11 +23,3 @@ export function saveItemsToAPI(id, taskName, taskDescription) {
         "task_name": taskName
       })
 }
-
-export function createTask(id, taskName = null, taskDescription = null) {
-  return {
-    "id": id,
-    "task_name": taskName,
-    "task_description": taskDescription
-  }
-}
