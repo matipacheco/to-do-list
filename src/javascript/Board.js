@@ -2,7 +2,7 @@ import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
 import { NewCardButton } from './NewCardButton';
-import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils";
+import { getItemsFromAPI, saveItemsToAPI, getLastId, createTask } from "../utils/utils";
 
 class Board extends Component {
   constructor(props) {
@@ -22,26 +22,16 @@ class Board extends Component {
     // to-do list until the Promise is resolved and the state is updated.
   }
 
-  createCard(taskName, taskDescription) {
-    return {
-      "id": this.state.lastId,
-      "task_name": (taskName ? taskName : "&nbsp;"),
-      "task_description": (taskDescription ? taskDescription : "&nbsp;")
-    }
-  }
-
   addCard = (taskName = null, taskDescription = null) => {
-      /*this.setState( state => ({
-        lastId: getLastId(state.lastId),
-        items: state.items.concat(this.createCard(taskName, taskDescription))
-    }));*/
+    let id = getLastId(this.state.lastId);
+
+    this.setState( {
+        lastId: id,
+        items: this.state.items.concat(createTask(id, taskName, taskDescription))
+    });
 
     saveItemsToAPI(this.state.lastId, taskName, taskDescription)
-        .then(response =>
-            this.setState({
-              items: this.state.items.concat(response.data),
-              lastId: this.getLastId(response)
-            }))
+        .then()
         .catch();
   };
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { insertTaskUrl, getTasksUrl } from './Constants';
 
-function getLastId(id) {
+export function getLastId(id) {
   return (parseInt(id) + 1).toString()
 }
 
@@ -10,11 +10,11 @@ function getLastId(id) {
 // json-server -p 3001  --watch src/utils/mocks/get_all_tasks_mock.json
 //////////////////////////////////////////////////////////////////////////
 
-function getItemsFromAPI() {
+ export function getItemsFromAPI() {
   return axios(getTasksUrl);
 }
 
-function saveItemsToAPI(id, taskName, taskDescription) {
+export function saveItemsToAPI(id, taskName, taskDescription) {
   return axios.post(
       insertTaskUrl,
       {
@@ -24,4 +24,10 @@ function saveItemsToAPI(id, taskName, taskDescription) {
       })
 }
 
-export { getLastId, getItemsFromAPI, saveItemsToAPI }
+export function createTask(id, taskName = null, taskDescription = null) {
+  return {
+    "id": id,
+    "task_name": taskName,
+    "task_description": taskDescription
+  }
+}
