@@ -2,7 +2,7 @@ import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
 import { NewCardButton } from './NewCardButton';
-import { getItemsFromAPI, saveItemsToAPI, getLastId, createTask } from "../utils/utils";
+import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils";
 
 class Board extends Component {
   constructor(props) {
