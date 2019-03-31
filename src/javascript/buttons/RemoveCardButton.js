@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 
 class RemoveCardButton extends Component {
-    constructor(props) {
-        super(props)
-    }
+    handleClick = (event) => {
+        event.preventDefault();
+        alert(this.props.item)
+    };
 
     render() {
         return (
             <div>
-                { this.props.item }
+                <button onClick={ this.handleClick }>
+                    x
+                </button>
             </div>
         );
     }

@@ -15,7 +15,7 @@ class Board extends Component {
         .then(response =>
             this.setState({
                 items: response.data,
-                lastId: this.getLastId(response)
+                lastId: getLastId(response)
             }))
         .catch();
     // If it renders before the Promise is resolved, it will render an empty
@@ -32,10 +32,6 @@ class Board extends Component {
         })
         .catch();
   };
-
-  getLastId(response) {
-      return getLastId(response.data.slice(-1).pop().id)
-  }
 
   renderItems = () => {
     return this.state.items.map(function(item) {

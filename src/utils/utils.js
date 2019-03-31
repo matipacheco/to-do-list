@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { insertTaskUrl, getTasksUrl } from './Constants';
 
-export function getLastId(id) {
+function formatId(id) {
   return (parseInt(id) + 1).toString()
+}
+
+export function getLastId(response) {
+    return formatId(response.data.slice(-1).pop().id)
 }
 
 //////////////////////////////////////////////////////////////////////////
