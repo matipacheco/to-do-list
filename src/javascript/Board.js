@@ -2,7 +2,13 @@ import '../css/Board.css'
 import Card from './Card'
 import React, { Component } from 'react'
 import { AddCardButton } from './buttons/AddCardButton'
-import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils"
+import {
+  getItemsFromAPI,
+  saveItemsToAPI,
+  getLastId,
+  deleteItemFromAPI
+} from "../utils/utils"
+
 
 class Board extends Component {
   constructor(props) {
@@ -33,8 +39,14 @@ class Board extends Component {
         .catch();
   };
 
-  removeCard = () => {
-    alert('holi')
+  removeCard = (taskId) => {
+    deleteItemFromAPI(taskId)
+      .then(() => {
+        this.setState( {
+          items: this.state.items.filter((task) => { return task.id !== taskId })
+        });
+      })
+      .catch();
   };
 
   renderItems = () => {
