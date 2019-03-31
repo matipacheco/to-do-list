@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class RemoveCardButton extends Component {
     handleClick = (event) => {
         event.preventDefault();
-        alert(this.props.item)
+        alert(this.props.taskId)
     };
 
     render() {

@@ -8,13 +8,13 @@ class Card extends Component {
             <div className='card'>
                 <div>
                     <div style={ { fontSize: 11 } }>
-                        { this.props.task_name }
+                        { this.props.taskName }
                     </div>
-                    <RemoveCardButton item={ this.props.item }/>
+                    <RemoveCardButton taskId={ this.props.taskId }/>
                 </div>
 
                 <div style={ { fontSize: 25 } }>
-                    { this.props.task_description }
+                    { this.props.taskDescription }
                 </div>
             </div>
         )

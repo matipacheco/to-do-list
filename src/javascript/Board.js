@@ -33,12 +33,17 @@ class Board extends Component {
         .catch();
   };
 
+  removeCard = () => {
+
+  };
+
   renderItems = () => {
     return this.state.items.map(function(item) {
       return <Card key={ item.id }
-                   item={ item.id }
-                   task_name={ item.task_name }
-                   task_description={ item.task_description }
+                   taskId={ item.id }
+                   taskName={ item.taskName }
+                   taskDescription={ item.taskDescription }
+
       />
     });
   };
