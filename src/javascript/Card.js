@@ -1,5 +1,6 @@
 import '../css/Card.css'
 import React, { Component } from 'react'
+import RemoveCardButton from './buttons/RemoveCardButton'
 
 class Card extends Component {
     render() {
@@ -9,9 +10,7 @@ class Card extends Component {
                     <div style={ { fontSize: 11 } }>
                         { this.props.task_name }
                     </div>
-                    <div>
-                        X
-                    </div>
+                    <RemoveCardButton item={ this.props.item }/>
                 </div>
 
                 <div style={ { fontSize: 25 } }>
@@ -22,4 +21,4 @@ class Card extends Component {
     }
 }
 
-export { Card }
+export default Card

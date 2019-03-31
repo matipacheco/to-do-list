@@ -1,8 +1,8 @@
-import '../css/Board.css';
-import { Card } from './Card';
-import React, { Component } from 'react';
-import { AddCardButton } from './buttons/AddCardButton';
-import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils";
+import '../css/Board.css'
+import Card from './Card'
+import React, { Component } from 'react'
+import { AddCardButton } from './buttons/AddCardButton'
+import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils"
 
 class Board extends Component {
   constructor(props) {
@@ -39,7 +39,11 @@ class Board extends Component {
 
   renderItems = () => {
     return this.state.items.map(function(item) {
-      return <Card key={ item.id } task_name={ item.task_name } task_description={ item.task_description }/>
+      return <Card key={ item.id }
+                   item={ item.id }
+                   task_name={ item.task_name }
+                   task_description={ item.task_description }
+      />
     });
   };
 
