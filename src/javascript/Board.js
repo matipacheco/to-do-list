@@ -7,7 +7,7 @@ import {
   saveItemsToAPI,
   getLastId,
   deleteItemFromAPI
-} from "../utils/utils"
+} from "../utils/Utils"
 
 
 class Board extends Component {
