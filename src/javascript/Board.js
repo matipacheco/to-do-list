@@ -41,8 +41,8 @@ class Board extends Component {
     return this.state.items.map(function(item) {
       return <Card key={ item.id }
                    taskId={ item.id }
-                   taskName={ item.taskName }
-                   taskDescription={ item.taskDescription }
+                   taskName={ item.task_name }
+                   taskDescription={ item.task_description }
 
       />
     });
