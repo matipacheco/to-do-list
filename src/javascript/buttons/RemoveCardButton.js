@@ -3,16 +3,16 @@ import React, { Component } from 'react'
 class RemoveCardButton extends Component {
     handleClick = (event) => {
         event.preventDefault();
-        alert(this.props.taskId)
+        this.props.removeCard(this.props.taskId)
     };
 
     render() {
         return (
-            <div>
+            <span>
                 <button onClick={ this.handleClick }>
                     x
                 </button>
-            </div>
+            </span>
         );
     }
 }

@@ -34,16 +34,16 @@ class Board extends Component {
   };
 
   removeCard = () => {
-
+    alert('holi')
   };
 
   renderItems = () => {
-    return this.state.items.map(function(item) {
+    return this.state.items.map((item) => {
       return <Card key={ item.id }
                    taskId={ item.id }
                    taskName={ item.task_name }
                    taskDescription={ item.task_description }
-
+                   removeCard={ this.removeCard }
       />
     });
   };

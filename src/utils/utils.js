@@ -1,9 +1,5 @@
 import axios from 'axios'
-import {
-  insertTaskUrl,
-  getTasksUrl,
-  deleteTaskUrl
-} from './Constants'
+import { theOneAndOnly } from './Constants'
 
 
 function formatId(id) {
@@ -20,12 +16,12 @@ export function getLastId(response) {
 //////////////////////////////////////////////////////////////////////////
 
 export function getItemsFromAPI() {
-  return axios(getTasksUrl);
+  return axios(theOneAndOnly);
 }
 
 export function saveItemsToAPI(taskId, taskName, taskDescription) {
   return axios.post(
-    insertTaskUrl,
+    theOneAndOnly,
     {
       "id": taskId,
       "task_description": taskDescription,
@@ -35,6 +31,6 @@ export function saveItemsToAPI(taskId, taskName, taskDescription) {
 
 export function deleteItemFromAPI(taskId) {
   return axios.delete(
-    deleteTaskUrl + taskId
+    theOneAndOnly + taskId
   )
 }
