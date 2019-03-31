@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-class NewCardButton extends Component {
+class AddCardButton extends Component {
     handleTaskNameChange = (event) => {
         this.setState({ taskName : event.target.value })
     };
@@ -35,4 +35,4 @@ class NewCardButton extends Component {
     }
 }
 
-export { NewCardButton };
+export { AddCardButton }

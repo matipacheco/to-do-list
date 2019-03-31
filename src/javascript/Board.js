@@ -1,7 +1,7 @@
 import '../css/Board.css';
 import { Card } from './Card';
 import React, { Component } from 'react';
-import { NewCardButton } from './NewCardButton';
+import { AddCardButton } from './buttons/AddCardButton';
 import { getItemsFromAPI, saveItemsToAPI, getLastId } from "../utils/utils";
 
 class Board extends Component {
@@ -46,7 +46,7 @@ class Board extends Component {
   render() {
     return(
         <div className='board_section'>
-          <NewCardButton addCard={ this.addCard } />
+          <AddCardButton addCard={ this.addCard } />
           { this.renderItems() }
         </div>
     );

@@ -1,15 +1,25 @@
-import '../css/Card.css';
-import React, { Component } from 'react';
+import '../css/Card.css'
+import React, { Component } from 'react'
 
 class Card extends Component {
     render() {
         return(
-            <div className='card'
-                 style={ { fontSize: 25 } }
-                 dangerouslySetInnerHTML={ { __html: this.props.task_description } }
-            />
+            <div className='card'>
+                <div>
+                    <div style={ { fontSize: 11 } }>
+                        { this.props.task_name }
+                    </div>
+                    <div>
+                        X
+                    </div>
+                </div>
+
+                <div style={ { fontSize: 25 } }>
+                    { this.props.task_description }
+                </div>
+            </div>
         )
     }
 }
 
-export { Card };
+export { Card }
